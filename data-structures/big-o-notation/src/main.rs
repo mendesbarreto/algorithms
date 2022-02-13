@@ -5,6 +5,7 @@
 //
 
 use std::borrow::Borrow;
+use std::time::Instant;
 
 // fn1
 fn sum_first_element(list: Vec<i32>) -> i32 {
@@ -42,8 +43,35 @@ fn pair_list_items(list: Vec<i32>) -> Vec<i32> {
     return pair_items;
 }
 
+fn run_pair_list(list: Vec<i32>) {
+    let start = Instant::now();
+    pair_list_items(list);
+    let duration = start.elapsed();
+    println!("Create pairs algo took: {:?}", duration);
+}
+
+fn run_first_element(list: Vec<i32>) {
+    let start = Instant::now();
+    sum_first_element(list);
+    let duration = start.elapsed();
+    println!("Sum first element  took: {:?}", duration);
+}
+
+fn run_sum_all_items(list: Vec<i32>) {
+    let start = Instant::now();
+    sum_all_items(list);
+    let duration = start.elapsed();
+    println!("Sum all items: {:?}", duration);
+}
+
 fn main() {
-    let list = vec![1, 2, 3, 4, 5];
-    let pair_list = pair_list_items(list);
-    println!("Hello, world! {:?}", pair_list);
+    let list = vec![
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
+        26, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
+        25, 26,
+    ];
+
+    run_pair_list(list.clone());
+    run_first_element(list.clone());
+    run_sum_all_items(list.clone());
 }
